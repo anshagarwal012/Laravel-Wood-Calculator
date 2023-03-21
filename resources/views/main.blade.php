@@ -30,19 +30,14 @@
                         </div>
                         <div class="nk-header-tools ml-auto" data-content="headerNav">
                             <ul class="nk-menu nk-menu-main ui-s2">
-                                <li class="nk-menu-item Wood">
-                                    <a href="/" class="nk-menu-link">
-                                        <span class="nk-menu-text">Wood</span>
+                                <li class="nk-menu-item">
+                                    <a href="/add" class="nk-menu-link">
+                                        <span class="nk-menu-text">Add Invoice</span>
                                     </a>
                                 </li>
-                                <li class="nk-menu-item Wood_List">
-                                    <a href="/Wood_List" class="nk-menu-link">
-                                        <span class="nk-menu-text">Wood List</span>
-                                    </a>
-                                </li>
-                                <li class="nk-menu-item Circle_Wood_List">
-                                    <a href="/Circle_Wood_List" class="nk-menu-link">
-                                        <span class="nk-menu-text">Circle Wood List</span>
+                                <li class="nk-menu-item">
+                                    <a href="/get" class="nk-menu-link">
+                                        <span class="nk-menu-text">Invoice List</span>
                                     </a>
                                 </li>
                             </ul>
@@ -78,7 +73,7 @@
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
     <script src="./js/toastr.js"></script>
-    <script src="./js/scripts.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 
 </html>

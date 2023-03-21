@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WoodController;
 use App\Http\Controllers\WoodCircleController;
+use App\Http\Controllers\WoodEntryController;
 
 
 /*
@@ -34,4 +35,12 @@ Route::controller(WoodCircleController::class)->group(function () {
     Route::get('/circleentry/{woodcircle}', 'show');
     Route::put('/circleentry/{woodcircle}', 'update');
     Route::delete('/circleentry/{woodcircle}', 'destroy');
+});
+
+Route::controller(WoodEntryController::class)->group(function () {
+    Route::get('/woodentry', 'index');
+    Route::post('/woodentry', 'store');
+    // Route::get('/circleentry/{woodcircle}', 'show');
+    // Route::put('/circleentry/{woodcircle}', 'update');
+    // Route::delete('/circleentry/{woodcircle}', 'destroy');
 });
