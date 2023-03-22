@@ -19,4 +19,8 @@ class WoodEntryController extends Controller
         $d['data'] = json_encode($d['data']);
         WoodEntry::create($d);
     }
+    public function show(WoodEntry $id)
+    {
+        return view('print_invoice', ['data' => $id->toArray()]);
+    }
 }

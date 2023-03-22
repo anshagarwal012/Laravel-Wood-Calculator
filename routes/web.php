@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WoodEntryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,9 @@ Route::get('/add', function () {
 Route::get('/get', function () {
     return view('main_list');
 });
-// Route::get('/get/{id}', function () {
-//     return view('main_list');
-// });
+Route::controller(WoodEntryController::class)->group(function () {
+    Route::get('/get/{id}', 'show');
+});
 
 Route::get('/', function () {
     return redirect('/add');

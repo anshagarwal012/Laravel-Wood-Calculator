@@ -51,10 +51,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row cutsize my-4">
-                        <div class="col-sm-3"><input type="number" class="form-control width" placeholder="width"></div>
-                        <div class="col-sm-3"><input type="number" class="form-control thick" placeholder="thick"></div>
-                        <div class="col-sm-3"><input type="number" class="form-control length" placeholder="length"></div>
+                    <div class="row cutsize my-4 align-items-end">
+                        <div class="col-sm-3"><input type="checkbox" class="fixed"><input type="number"
+                                class="form-control width" placeholder="width"></div>
+                        <div class="col-sm-3"><input type="checkbox" class="fixed"><input type="number"
+                                class="form-control thick" placeholder="thick"></div>
+                        <div class="col-sm-3"><input type="checkbox" class="fixed"><input type="number"
+                                class="form-control length" placeholder="length"></div>
                         <div class="col-sm-2"><input type="number" class="form-control quantity" placeholder="quantity">
                         </div>
                         <div class="col-sm-1"><button class="btn btn-primary add_more">+</button></div>
@@ -94,6 +97,10 @@
                                 </thead>
                                 <tbody></tbody>
                             </table>
+                            <div class="row justify-content-end mt-5">
+                                <div class="col-md-2">Total Qty.<input type="text" class="tqty" disabled></div>
+                                <div class="col-md-2">Total Cuft<input type="text" class="tcuft" disabled></div>
+                            </div>
                         </div>
                     </div>
 

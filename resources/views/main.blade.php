@@ -8,8 +8,8 @@
     <!-- Page Title  -->
     <title>@yield('title')</title>
     <!-- StyleSheets  -->
-    <link id="skin-default" rel="stylesheet" href="./css/theme.css">
-    <link rel="stylesheet" href="./css/ansh.min.css">
+    <link id="skin-default" rel="stylesheet" href="/css/theme.css">
+    <link rel="stylesheet" href="/css/ansh.min.css">
     <link href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css" rel="stylesheet">
 
 </head>
@@ -25,7 +25,7 @@
                     <div class="nk-header-wrap">
                         <div class="nk-header-brand">
                             <a href="/" class="logo-link">
-                                <img class="logo-dark logo-img" src="./img/logo.png" alt="logo">
+                                <img class="logo-dark logo-img" src="/img/logo.png" alt="logo">
                             </a>
                         </div>
                         <div class="nk-header-tools ml-auto" data-content="headerNav">
@@ -69,11 +69,9 @@
     </div>
     <!-- app-root -->
     <!-- JavaScript -->
-    <script src="./js/bundle.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
-    <script src="./js/toastr.js"></script>
-    <script src="./js/main.js"></script>
+    <script src="/js/bundle.js"></script>
+    <script src="/js/toastr.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 
 </html>

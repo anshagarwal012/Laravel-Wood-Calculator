@@ -2,10 +2,15 @@ $(document).ready(async function () {
     //Boot
     ok_console_stamp()
 
+    // Global Variable
+    tqty = 0; tcuft = 0;
+
+    // On Load
     if (window.location.pathname == '/get') {
         read_data(window.location.origin + '/api/woodentry');
     }
     $('.circle_wood').hide();
+
 
     // Main Actions
     $('.cutsize .add_more').on('click', function () {
@@ -13,26 +18,37 @@ $(document).ready(async function () {
         var d = ['<tr>'];
         ['width', 'thick', 'length', 'quantity'].map(e => {
             l = parseFloat($('.' + e).val()) ? parseFloat($('.' + e).val()) : 1
+            s = parseFloat($('.' + e).val()) ? parseFloat($('.' + e).val()) : 0
             if (e == 'quantity') {
                 total = (total / 144) * l
+                tqty += s
             } else {
                 total = total * l
             }
-            d.push(`<td>${$('.' + e).val() ? $('.' + e).val() : 0}</td>`)
-            $('.' + e).val('')
+            d.push(`<td class="${e}">${$('.' + e).val() ? $('.' + e).val() : 0}</td>`)
+            if (!$('.' + e).siblings('input').is(':checked')) {
+                $('.' + e).val('')
+            }
         })
-        d.push('<td>' + total.toFixed(2) + '</td><td><button class="btn delete btn-danger">Delete</button></td></tr>')
+        d.push('<td class="cuft">' + total.toFixed(2) + '</td><td><button class="btn delete btn-danger">Delete</button></td></tr>')
         $('table.cutsize').append(d.join(''))
+        tcuft += total
+        $('.tqty').val(tqty)
+        $('.tcuft').val(tcuft.toFixed(2))
     })
     $('.circle_wood .add_more').on('click', function () {
         var length = $(this).parent('div ').parent('div').find('.length').val();
         var perimeter = $(this).parent('div').parent('div').find('.perimeter').val();
         var quantity = $(this).parent('div').parent('div').find('.quantity').val();
-        d = `<tr><td>${length}</td><td>${perimeter}</td><td>${quantity}</td><td>${((((perimeter / 4) ** 2) / 10000) * length * quantity).toFixed(3)}</td><td><button class="btn delete btn-danger">Delete</button></td></tr>`;
+        d = `<tr><td class="length">${length}</td><td class="perimeter">${perimeter}</td><td class="quantity">${quantity}</td><td class="cuft">${((((perimeter / 4) ** 2) / 10000) * length * quantity).toFixed(3)}</td><td><button class="btn delete btn-danger">Delete</button></td></tr>`;
         $('table.circle_wood').append(d)
         $('.length').val('');
         $('.perimeter').val('');
         $('.quantity').val('');
+        tqty += parseInt(quantity)
+        tcuft += ((((perimeter / 4) ** 2) / 10000) * length * quantity)
+        $('.tqty').val(tqty)
+        $('.tcuft').val(tcuft.toFixed(3))
     })
     $('.submit_value').on('click', async function () {
         var CompanyName = $('#CompanyName').val()
@@ -70,11 +86,34 @@ $(document).ready(async function () {
         await sleep(1000)
         window.location.reload()
     })
+    $('.fixed').on('click', function (e) {
+        var da = $(this).siblings('input')
+        if (da.val() == '') {
+            e.preventDefault();
+            toast_c("Value Can't Be Empty")
+        } else {
+            if ($('.fixed:checked').length > 2) {
+                toast_c("You Can Only Fixed 2 Column")
+                e.preventDefault();
+            } else {
+                if ($(this).is(':checked')) {
+                    da.attr('disabled', true)
+                } else {
+                    da.removeAttr('disabled')
+                }
+            }
+        }
+    })
 
 
     // Universal Events
     $(document).on('click', '.delete', function () {
         $(this).parent('td').parent('tr').remove();
+        var m = $(this).parent('td').parent('tr');
+        tqty -= parseInt(m.find('.quantity').html())
+        tcuft -= parseFloat(m.find('.cuft').html())
+        $('.tqty').val(tqty)
+        $('.tcuft').val(tcuft.toFixed(3))
     })
 
     $('[name="wood"]').on('change', function () {
@@ -113,13 +152,16 @@ function tableToJson(table) {
 function toast() {
     NioApp.Toast("Data Inserted Successfully!", "success");
 }
+function toast_c(d) {
+    NioApp.Toast(d, "success");
+}
 async function read_data(endpoint) {
     await fetch(endpoint)
         .then((response) => response.json())
         .then((data) => {
-            const d = data.map((e, i) => {
+            const d = data.reverse().map((e, i) => {
                 i++
-                return `<tr><td>${i}</td><td>${e.created_at.split('T')[0]}</td><td>${e.CompanyName}</td><td>${e.Address}</td><td>${e.MobileNumber}</td><td>${e.type == 'cut_size' ? 'Cut Size' : 'Circle Wood'}</td><td>${e.DriverName}</td><td>${e.Residences}</td><td>${e.VehicleNumber}</td><td>${e.LicenseNumber}</td><td>${e.RTO}</td><td>${e.VehicleName}</td><td><a href="/get/${e.id}" class="btn delete btn-primary">View</a></td></tr>`;
+                return `<tr><td>${i}</td><td>${e.created_at.split('T')[0]}</td><td>${e.CompanyName}</td><td>${e.Address}</td><td>${e.MobileNumber}</td><td>${e.type == 'cut_size' ? 'Cut Size' : 'Circle Wood'}</td><td>${e.DriverName}</td><td>${e.Residences}</td><td>${e.VehicleNumber}</td><td>${e.LicenseNumber}</td><td>${e.RTO}</td><td>${e.VehicleName}</td><td><a target="_blank" href="/get/${e.id}" class="btn btn-primary">View</a></td></tr>`;
             });
             $('table tbody').html(d)
             $('table').DataTable({
@@ -131,4 +173,9 @@ async function read_data(endpoint) {
                 ],
             })
         });
+}
+function printPromot() {
+    setTimeout(() => {
+        window.print();
+    }, 200);
 }
