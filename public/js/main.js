@@ -205,7 +205,7 @@ async function read_data(endpoint) {
         .then((data) => {
             const d = data.reverse().map((e, i) => {
                 i++
-                return `<tr><td>${i}</td><td>${e.created_at.split('T')[0]}</td><td><a target="_blank" href="/get/${e.id}" class="text-bold">${e.CompanyName}</a></td><td>${e.Address}</td><td>${e.MobileNumber}</td><td>${e.type == 'cut_size' ? 'Cut Size' : 'Circle Wood'}</td><td>${e.DriverName}</td><td>${e.Residences}</td><td>${e.VehicleNumber}</td><td>${e.LicenseNumber}</td><td>${e.RTO}</td><td>${e.VehicleName}</td><td><a target="_blank" href="/get/update/${e.id}" class="btn btn-primary">Edit</a><a href="/get/delete/${e.id}" class="btn btn-danger delete">Delete</a></td></tr>`;
+                return `<tr><td>${i}</td><td>${e.created_at.split('T')[0]}</td><td><a target="_blank" href="/get/${e.id}" class="text-bold">${e.CompanyName}</a></td><td>${e.Address}</td><td>${e.MobileNumber}</td><td>${e.type == 'cut_size' ? 'Cut Size' : 'Circle Wood'}</td><td>${e.DriverName}</td><td>${e.Residences}</td><td>${e.VehicleNumber}</td><td>${e.LicenseNumber}</td><td>${e.RTO}</td><td>${e.VehicleName}</td><td><a href="/get/update/${e.id}" class="btn btn-primary">Edit</a><a href="/get/delete/${e.id}" class="btn btn-danger delete">Delete</a></td></tr>`;
             });
             $('table tbody').html(d)
             $('table').DataTable({

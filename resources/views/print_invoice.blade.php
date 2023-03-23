@@ -72,16 +72,18 @@
                            <table class="table table-striped">
                                <thead>
                                    <tr>{!! $data['type'] == 'cut_size'
-                                       ? "<th class='w-150px'>Sr. No.</th><th class='w-60'>Width</th><th>Thick</th><th>Length</th><th>Quantity</th><th>Cuft</th>"
-                                       : "<th class='w-150px'>Sr. No.</th><th class='w-60'>Length</th><th>Perimeter</th><th>Quantity</th><th>Cuft</th>" !!}
+                                       ? '<th>Sr. No.</th><th>Width</th><th>Thick</th><th>Length</th><th>Quantity</th><th>Cuft</th>'
+                                       : '<th>Sr. No.</th><th>Length</th><th>Perimeter</th><th>Quantity</th><th>Cuft</th>' !!}
                                    </tr>
                                </thead>
                                <tbody>
                                    @php($l = 0)
+                                   @php($q = 0)
                                    @foreach (json_decode($data['data'], true) as $key => $val)
                                        <tr>
                                            <td>{{ $key + 1 }}</td>
                                            @php($l += end($val))
+                                           @php($q += prev($val))
                                            @foreach ($val as $e)
                                                {!! "<td>$e</td>" !!}
                                            @endforeach
@@ -90,13 +92,40 @@
                                </tbody>
                                <tfoot>
                                    <tr>
-                                       <td colspan="2"></td>
-                                       <td {!! $data['type'] == 'cut_size' ? "colspan='3'" : "colspan='2'" !!}>Grand Total</td>
+                                       <td {!! $data['type'] == 'cut_size' ? "colspan='4'" : "colspan='3'" !!}></td>
+                                       <td class="text-right">Total Quantity</td>
+                                       <td>{{ $q }}</td>
+                                   </tr>
+                                   <tr>
+                                       <td {!! $data['type'] == 'cut_size' ? "colspan='4'" : "colspan='3'" !!}></td>
+                                       <td class="text-right">Grand Total</td>
                                        <td>{{ $l }}</td>
                                    </tr>
                                </tfoot>
                            </table>
                        </div>
+                   </div>
+                   <div class="row mt-2 footer justify-content-end">
+                       <div class="col-4 text-center">
+                           <p>Authorised Signatory</p>
+                           <br>
+                           <p>(Viral Sawmill)</p>
+                       </div>
+                   </div>
+
+               </div>
+           </div>
+       </div>
+       <div class="nk-footer bg-white">
+           <div class="container-fluid">
+               <div class="nk-footer-wrap">
+                   <div class="row text-center w-75 mx-auto justify-content-between">
+                       <p>Address: </p>
+                       <p>Malanpada, Dharampur, Valsad Gujarat 396050 &nbsp; | &nbsp; </p>
+                       <p>Email: </p>
+                       <p>wood@viralsawmill.in &nbsp; | &nbsp; </p>
+                       <p>Website: </p>
+                       <p>www.viralsawmill.in</p>
                    </div>
                </div>
            </div>
