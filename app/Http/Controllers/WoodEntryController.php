@@ -23,4 +23,30 @@ class WoodEntryController extends Controller
     {
         return view('print_invoice', ['data' => $id->toArray()]);
     }
+    public function delete(WoodEntry $id)
+    {
+        WoodEntry::destroy($id->toArray()['id']);
+        return redirect()->back();
+    }
+    public function update(WoodEntry $id)
+    {
+        return view('update', ['data' => $id->toArray()]);
+    }
+    public function update_invoice(Request $res, WoodEntry $id)
+    {
+        $d = $res->json()->all();
+        $data = WoodEntry::find($id->toArray()['id']);
+        $data->CompanyName = $d['CompanyName'];
+        $data->Address = $d['Address'];
+        $data->MobileNumber = $d['MobileNumber'];
+        $data->type = $d['type'];
+        $data->data = $d['data'];
+        $data->DriverName = $d['DriverName'];
+        $data->Residences = $d['Residences'];
+        $data->VehicleNumber = $d['VehicleNumber'];
+        $data->LicenseNumber = $d['LicenseNumber'];
+        $data->RTO = $d['RTO'];
+        $data->VehicleName = $d['VehicleName'];
+        $data->save();
+    }
 }

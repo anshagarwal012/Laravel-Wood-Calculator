@@ -22,6 +22,8 @@ Route::get('/get', function () {
 });
 Route::controller(WoodEntryController::class)->group(function () {
     Route::get('/get/{id}', 'show');
+    Route::get('/get/delete/{id}', 'delete');
+    Route::get('/get/update/{id}', 'update');
 });
 
 Route::get('/', function () {
