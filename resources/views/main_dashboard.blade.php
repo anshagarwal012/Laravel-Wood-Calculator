@@ -52,15 +52,24 @@
                         </div>
                     </div>
                     <div class="row cutsize my-4 align-items-end">
-                        <div class="col-sm-3"><input type="checkbox" class="fixed"><input type="number"
-                                class="form-control width" placeholder="width"></div>
-                        <div class="col-sm-3"><input type="checkbox" class="fixed"><input type="number"
-                                class="form-control thick" placeholder="thick"></div>
-                        <div class="col-sm-3"><input type="checkbox" class="fixed"><input type="number"
-                                class="form-control length" placeholder="length"></div>
-                        <div class="col-sm-2"><input type="number" class="form-control quantity" placeholder="quantity">
+                        <div class="col-sm-3">
+                            <input type="checkbox" tabindex="9" class="fixed">
+                            <input type="number" tabindex="0" class="form-control width" placeholder="width">
                         </div>
-                        <div class="col-sm-1"><button class="btn btn-primary add_more">+</button></div>
+                        <div class="col-sm-3">
+                            <input type="checkbox" tabindex="9" class="fixed">
+                            <input type="number" tabindex="0" class="form-control thick" placeholder="thick">
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="checkbox" tabindex="9" class="fixed">
+                            <input type="number" tabindex="0" class="form-control length" placeholder="length">
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="number" tabindex="0" class="form-control quantity" placeholder="quantity">
+                        </div>
+                        <div class="col-sm-1">
+                            <button class="btn btn-primary add_more">+</button>
+                        </div>
                     </div>
                     <div class="row circle_wood my-4">
                         <div class="col-sm-4"><input type="number" class="form-control length" placeholder="length"></div>

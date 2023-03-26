@@ -69,7 +69,7 @@
                    </div>
                    <div class="invoice-bills">
                        <div class="table-responsive">
-                           <table class="table table-striped">
+                           <table class="table table-striped text-center">
                                <thead>
                                    <tr>{!! $data['type'] == 'cut_size'
                                        ? '<th>Sr. No.</th><th>Width</th><th>Thick</th><th>Length</th><th>Quantity</th><th>Cuft</th>'
@@ -93,13 +93,8 @@
                                <tfoot>
                                    <tr>
                                        <td {!! $data['type'] == 'cut_size' ? "colspan='4'" : "colspan='3'" !!}></td>
-                                       <td class="text-right">Total Quantity</td>
-                                       <td>{{ $q }}</td>
-                                   </tr>
-                                   <tr>
-                                       <td {!! $data['type'] == 'cut_size' ? "colspan='4'" : "colspan='3'" !!}></td>
-                                       <td class="text-right">Grand Total</td>
-                                       <td>{{ $l }}</td>
+                                       <td class="text-center">{{ $q }}<br>Total Quantity</td>
+                                       <td class="text-center">{{ $l }}<br>Total Cuft</td>
                                    </tr>
                                </tfoot>
                            </table>
